@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <title>CorePass</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="app-header">
+      <span class="logo">🔒 CorePass</span>
+      <span id="status-dot" class="status-dot status-unknown" title="Bağlantı durumu"></span>
+    </header>
+
+    <!-- Bağlantı yok / masaüstü uygulaması kapalı -->
+    <section id="view-offline" class="view hidden">
+      <p class="msg">CorePass masaüstü uygulaması bulunamadı.</p>
+      <p class="msg-sub">Devam etmek için CorePass.exe uygulamasını açın ve kasanızı kilidini açın.</p>
+      <button id="btn-retry" class="btn btn-primary">Tekrar Dene</button>
+    </section>
+
+    <!-- Eşleştirme ekranı -->
+    <section id="view-pair" class="view hidden">
+      <p class="msg">Uygulamayla eşleştirin</p>
+      <p class="msg-sub">CorePass masaüstü uygulamasında görünen 8 haneli eşleştirme kodunu girin.</p>
+      <input id="pairing-input" class="input" maxlength="8" placeholder="Eşleştirme Kodu" />
+      <button id="btn-pair" class="btn btn-primary">Eşleştir</button>
+      <p id="pair-error" class="error hidden"></p>
+    </section>
+
+    <!-- Kasa kilitli -->
+    <section id="view-locked" class="view hidden">
+      <p class="msg">Kasa kilitli</p>
+      <p class="msg-sub">Hesapları görmek için CorePass uygulamasından kasanızın kilidini açın.</p>
+      <button id="btn-retry-2" class="btn btn-secondary">Tekrar Dene</button>
+    </section>
+
+    <!-- Ana görünüm -->
+    <section id="view-main" class="view hidden">
+      <div class="tabs">
+        <button class="tab-btn active" data-tab="entries">Hesaplar</button>
+        <button class="tab-btn" data-tab="generator">Üretici</button>
+      </div>
+
+      <div id="tab-entries" class="tab-panel">
+        <div id="site-matches-section" class="hidden">
+          <div class="section-label">🌐 Bu site için</div>
+          <div id="site-matches-list" class="entries-list"></div>
+        </div>
+
+        <input id="search-input" class="input" placeholder="Ara: site veya kullanıcı adı..." />
+        <div class="section-label">Tüm Hesaplar</div>
+        <div id="entries-list" class="entries-list"></div>
+      </div>
+
+      <div id="tab-generator" class="tab-panel hidden">
+        <div class="generated-box">
+          <span id="generated-password">••••••••••••••••</span>
+          <button id="btn-copy-generated" class="icon-btn" title="Panoya kopyala">⧉</button>
+        </div>
+        <div id="strength-label" class="strength"></div>
+
+        <label class="slider-label">Uzunluk: <span id="length-value">16</span></label>
+        <input id="length-slider" type="range" min="8" max="32" value="16" />
+
+        <div class="checkboxes">
+          <label><input type="checkbox" id="opt-upper" checked /> Büyük Harf</label>
+          <label><input type="checkbox" id="opt-digits" checked /> Rakam</label>
+          <label><input type="checkbox" id="opt-symbols" checked /> Sembol</label>
+        </div>
+
+        <button id="btn-generate" class="btn btn-primary">Yeni Şifre Üret</button>
+      </div>
+    </section>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

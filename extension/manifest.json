@@ -1,0 +1,34 @@
+{
+  "manifest_version": 3,
+  "name": "CorePass — Yerel Şifre Kasası",
+  "version": "1.0.0",
+  "description": "CorePass masaüstü uygulamanıza bağlanarak kasadaki hesapları listeler ve tek tıkla güçlü şifre üretir.",
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "CorePass"
+  },
+  "icons": {
+    "16": "icon16.png",
+    "48": "icon48.png",
+    "128": "icon128.png"
+  },
+  "permissions": ["storage", "clipboardWrite", "activeTab", "scripting", "contextMenus", "tabs"],
+  "host_permissions": ["http://127.0.0.1:5732/*", "http://*/*", "https://*/*"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["http://*/*", "https://*/*"],
+      "js": ["content.js"],
+      "run_at": "document_idle",
+      "all_frames": false
+    }
+  ],
+  "commands": {
+    "corepass-autofill": {
+      "suggested_key": { "default": "Ctrl+Shift+L", "mac": "Command+Shift+L" },
+      "description": "CorePass ile en uygun hesabı otomatik doldur"
+    }
+  }
+}

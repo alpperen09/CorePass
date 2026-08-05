@@ -1,0 +1,34 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.eggs/
+.venv/
+venv/
+env/
+
+# PyInstaller
+build/*.spec.bak
+dist/
+*.build/
+*.manifest
+
+# CorePass kasa verileri - ASLA repoya eklenmemeli
+vault.db
+vault.enc
+vault_salt.bin
+*.corepass
+session_token.txt
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Loglar
+*.log
